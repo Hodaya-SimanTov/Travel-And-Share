@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "154288989143",
+    "project_id": "travel-and-share-1d95c",
+    "storage_bucket": "travel-and-share-1d95c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154288989143:android:f87d1ae8c238da91796192",
+        "android_client_info": {
+          "package_name": "com.hodayaandkineret.travelandshare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154288989143-s07mjdpc11cn69qrg9d00fr147hil0j1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbwmV2HKiGFYQ_c4xSB2ghd0pK_cUcOx4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154288989143-s07mjdpc11cn69qrg9d00fr147hil0j1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
