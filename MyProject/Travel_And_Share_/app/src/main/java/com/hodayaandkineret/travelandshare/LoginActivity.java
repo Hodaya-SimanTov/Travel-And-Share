@@ -49,10 +49,9 @@ public class LoginActivity extends AppCompatActivity {
 
     }
     private void goToSignUp(){
-//                Intent intent=new Intent(LoginActivity.this,RegisterActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-//                startActivity(intent);
-//                finish();
+                Intent intent=new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(intent);
+
     }
     private void UserLogin(){
         String mail= InputMail.getEditText().getText().toString();
