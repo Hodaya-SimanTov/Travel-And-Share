@@ -46,8 +46,18 @@ public class LoginActivity extends AppCompatActivity {
                 UserLogin();
             }
         });
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sentLinkToEmailResPassword();
+            }
+        });
+    }
+
+    private void sentLinkToEmailResPassword() {
 
     }
+
     private void goToSignUp(){
                 Intent intent=new Intent(LoginActivity.this,RegisterActivity.class);
                 startActivity(intent);
@@ -85,7 +95,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
             });
-
         }
     }
     private void showError(TextInputLayout field, String text) {
