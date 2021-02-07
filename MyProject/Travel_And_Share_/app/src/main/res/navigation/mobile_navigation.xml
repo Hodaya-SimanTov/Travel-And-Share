@@ -32,4 +32,9 @@
         android:name="com.hodayaandkineret.travelandshare.ui.EditProfile.EditProfileFragment"
         android:label="Edit Your Profile"
         tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/nav_signout"
+        android:name="com.hodayaandkineret.travelandshare.SignOutFragment"
+        android:label="Sign Out"
+        tools:layout="@layout/fragment_sign_out" />
 </navigation>
