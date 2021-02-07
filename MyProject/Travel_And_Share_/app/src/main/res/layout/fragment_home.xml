@@ -6,17 +6,72 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_home"
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_home_search_bar"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </ScrollView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fragment_home_search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="#CBF6FBEF"
+        android:paddingLeft="45dp"
+        app:boxBackgroundColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/nav_host_fragment">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fragment_home_text_input_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#CBF6FBEF"
+            android:hint="Search Trip or Route" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/fragment_home_location_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_home_search_bar"
+        app:layout_constraintStart_toStartOf="@+id/fragment_home_search_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/location_icon" />
+
+    <ImageButton
+        android:id="@+id/fragment_hone_search_button"
+        style="@style/Widget.AppCompat.ImageButton"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        android:src="@drawable/search_button"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_home_search_bar"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_home_search_bar"
+        app:layout_constraintTop_toTopOf="@+id/fragment_home_search_bar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+

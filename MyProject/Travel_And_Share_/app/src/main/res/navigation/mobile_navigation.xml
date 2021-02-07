@@ -12,14 +12,19 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.hodayaandkineret.travelandshare.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_addTrip"
+        android:name="com.hodayaandkineret.travelandshare.ui.AddTrip.AddTripFragment"
+        android:label="AddTrip"
+        tools:layout="@layout/fragment_add_trip" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.hodayaandkineret.travelandshare.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_myTrips"
+        android:name="com.hodayaandkineret.travelandshare.ui.MyTrips.MyTripsFragment"
+        android:label="My Trips And Routes"
+        tools:layout="@layout/fragment_mytrips" />
+    <fragment
+        android:id="@+id/nav_myFavorites"
+        android:name="com.hodayaandkineret.travelandshare.ui.MyFavoritesFragment.MyFvorites"
+        android:label="My Favorites Trips And Route"
+        tools:layout="@layout/fragment_myfavoritestrips" />
 </navigation>
