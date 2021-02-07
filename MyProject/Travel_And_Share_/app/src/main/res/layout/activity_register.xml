@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bacgraundlogin"
+    tools:context=".RegisterActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="72dp"
+        android:text="SIGN-UP"
+        android:textColor="#3C6E3E"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/activity_register_profile_image"
+        android:layout_width="185dp"
+        android:layout_height="131dp"
+        android:layout_marginTop="44dp"
+        android:src="@drawable/propilnew"
+        android:tint="#F8F5F5"
+        app:civ_border_color="#FBFBFB"
+        app:civ_border_width="2dp"
+        app:civ_circle_background_color="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/activity_register_input_userName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_register_profile_image">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activity_register_input_userName1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="User Name"
+            android:inputType="textPersonName"
+            android:textSize="18sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/activity_register_input_mail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_register_input_userName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activity_register_input_mail1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email Address"
+            android:inputType="textEmailAddress"
+            android:textSize="18sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/activity_register_btn_signup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Sign-Up"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:backgroundTint="#3C6E3E"
+        app:layout_constraintEnd_toEndOf="@+id/activity_register_input_verify_password"
+        app:layout_constraintStart_toStartOf="@+id/activity_register_input_verify_password"
+        app:layout_constraintTop_toBottomOf="@+id/activity_register_input_verify_password" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/activity_register_input_password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/activity_register_input_mail"
+        app:layout_constraintStart_toStartOf="@+id/activity_register_input_mail"
+        app:layout_constraintTop_toBottomOf="@+id/activity_register_input_mail">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activity_register_input_password1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/activity_register_input_verify_password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/activity_register_input_password"
+        app:layout_constraintStart_toStartOf="@+id/activity_register_input_password"
+        app:layout_constraintTop_toBottomOf="@+id/activity_register_input_password">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/activity_register_input_verify_password1"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:hint="Verify Password "
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/activity_register_Have_Account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="32dp"
+        android:text="Already Have An Account"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/activity_register_btn_signup"
+        app:layout_constraintStart_toStartOf="@+id/activity_register_btn_signup"
+        app:layout_constraintTop_toBottomOf="@+id/activity_register_btn_signup" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
