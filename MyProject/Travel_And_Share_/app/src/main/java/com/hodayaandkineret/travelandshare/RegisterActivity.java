@@ -210,6 +210,7 @@ public class RegisterActivity extends AppCompatActivity {
                             FirebaseFirestore db = FirebaseFirestore.getInstance();
                             HashMap hashMap=new HashMap();
                             hashMap.put("username",username);
+                            hashMap.put("profilImage",imageUri.toString());
                             hashMap.put("status","offline");
 
                             db.collection("User").document(myUser.getUid())
