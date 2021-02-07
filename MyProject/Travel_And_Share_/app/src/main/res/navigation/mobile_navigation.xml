@@ -27,4 +27,9 @@
         android:name="com.hodayaandkineret.travelandshare.ui.MyFavoritesFragment.MyFvorites"
         android:label="My Favorites Trips And Route"
         tools:layout="@layout/fragment_myfavoritestrips" />
+    <fragment
+        android:id="@+id/nav_editProfile"
+        android:name="com.hodayaandkineret.travelandshare.ui.EditProfile.EditProfileFragment"
+        android:label="Edit Your Profile"
+        tools:layout="@layout/fragment_edit_profile" />
 </navigation>

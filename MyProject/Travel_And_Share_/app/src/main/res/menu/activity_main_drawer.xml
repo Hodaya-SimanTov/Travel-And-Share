@@ -20,5 +20,12 @@
             android:id="@+id/nav_myFavorites"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="My Favorites" />
+        <item
+            android:id="@+id/nav_editProfile"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Edit Profile" />
+
+
+
     </group>
 </menu>
