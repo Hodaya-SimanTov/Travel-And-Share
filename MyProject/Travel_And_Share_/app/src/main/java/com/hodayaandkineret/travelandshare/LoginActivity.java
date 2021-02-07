@@ -55,7 +55,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void sentLinkToEmailResPassword() {
-
+        Intent intent=new Intent(LoginActivity.this,ForgotPasswordActivity.class);
+        startActivity(intent);
     }
 
     private void goToSignUp(){
