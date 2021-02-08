@@ -1,5 +1,7 @@
 package com.hodayaandkineret.travelandshare.Model;
 
+import android.net.Uri;
+
 public class Post {
     private String id;
     private String name;
@@ -7,17 +9,23 @@ public class Post {
     private String address;
     private String ageFrom;
     private String ageTo;
-    private String imageUrl;
+    private Uri imageUrl;
     private String openText;
     private String ownerUid;
 
     public Post() {
+
+
+
+
+
+
     }
 
-    public String getImageUrl() {
+    public Uri getImageUrl() {
         return imageUrl;
     }
-    public void setImageUrl(String imageUrl) {
+    public void setImageUrl( Uri imageUrl) {
         this.imageUrl = imageUrl;
     }
     public String getName() {

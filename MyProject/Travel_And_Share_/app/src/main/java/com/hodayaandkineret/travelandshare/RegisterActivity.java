@@ -196,8 +196,47 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void SaveUserData(String username){
         myUser= myAuth.getCurrentUser();
-        SaveData(username);
+        mRef=FirebaseDatabase.getInstance().getReference().child("User");
+        SaveDataRealTime(username);
+        //SaveData(username);
     }
+
+    private void SaveDataRealTime(String username) {
+        storageRef= FirebaseStorage.getInstance().getReference().child("ProfilImages");
+        storageRef.child(myUser.getUid()).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                if(task.isSuccessful()){
+                    storageRef.child(myUser.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            HashMap hashMap=new HashMap();
+                            hashMap.put("username",username);
+                            hashMap.put("profilImage",imageUri.toString());
+                            hashMap.put("status","offline");
+
+                            mRef.child(myUser.getUid()).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
+                                @Override
+                                public void onSuccess(Object o) {
+                                    myLoadingDialog.dismiss();
+                                    Toast.makeText(RegisterActivity.this,"Account  Created!",Toast.LENGTH_LONG).show();
+                                    Intent intent=new Intent(RegisterActivity.this,MainActivity.class);
+                                    startActivity(intent);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    myLoadingDialog.dismiss();
+                                    Toast.makeText(RegisterActivity.this,e.toString(),Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+        });
+        }
+
     public void SaveData(String username){
         storageRef= FirebaseStorage.getInstance().getReference().child("ProfilImages");
         storageRef.child(myUser.getUid()).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
