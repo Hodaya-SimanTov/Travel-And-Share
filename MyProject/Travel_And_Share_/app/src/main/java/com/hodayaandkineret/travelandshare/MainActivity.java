@@ -61,14 +61,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
         m1Auth=FirebaseAuth.getInstance();
         m1User=m1Auth.getCurrentUser();
         m1UserRef=FirebaseDatabase.getInstance().getReference().child("User");
-       
-
-
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
