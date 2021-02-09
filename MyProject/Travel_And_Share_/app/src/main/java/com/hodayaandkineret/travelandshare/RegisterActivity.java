@@ -212,7 +212,7 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onSuccess(Uri uri) {
                             HashMap hashMap=new HashMap();
                             hashMap.put("username",username);
-                            hashMap.put("profilImage",imageUri.toString());
+                            hashMap.put("profilImage",uri.toString());
                             hashMap.put("status","offline");
 
                             mRef.child(myUser.getUid()).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
