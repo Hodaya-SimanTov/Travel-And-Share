@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -38,7 +40,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.UUID;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final int REQUEST_CODE =101 ;
@@ -129,13 +134,14 @@ public class RegisterActivity extends AppCompatActivity {
                         imageUri=data.getData();
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
                         ProfilImage.setImageBitmap(selectedImage);
+
+
                     }
                     break;
                 case 1: //return from gallery
                     if( resultCode==RESULT_OK && data!=null){
                         imageUri=data.getData();
                         ProfilImage.setImageURI(imageUri);
-
                     }
                     break;
             }
@@ -213,6 +219,8 @@ public class RegisterActivity extends AppCompatActivity {
                             HashMap hashMap=new HashMap();
                             hashMap.put("username",username);
                             hashMap.put("profilImage",uri.toString());
+                            hashMap.put("LastName","");
+                            hashMap.put("BirthDate","");
                             hashMap.put("status","offline");
 
                             mRef.child(myUser.getUid()).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
@@ -250,6 +258,9 @@ public class RegisterActivity extends AppCompatActivity {
                             HashMap hashMap=new HashMap();
                             hashMap.put("username",username);
                             hashMap.put("profilImage",imageUri.toString());
+                            hashMap.put("lastName","");
+                            Date d=new Date(1,1,2000);
+                            hashMap.put("birthDate",d.toString());
                             hashMap.put("status","offline");
 
                             db.collection("User").document(myUser.getUid())
