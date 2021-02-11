@@ -34,6 +34,7 @@
                     android:id="@+id/login_input_password1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableStart="@android:drawable/ic_lock_idle_lock"
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:textSize="18sp" />
@@ -110,6 +111,7 @@
                     android:id="@+id/activity_login_input_mail1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableStart="@android:drawable/sym_action_email"
                     android:hint="Email"
                     android:inputType="textEmailAddress"
                     android:textSize="18sp" />
