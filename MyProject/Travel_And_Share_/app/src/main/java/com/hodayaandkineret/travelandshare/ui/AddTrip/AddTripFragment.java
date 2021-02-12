@@ -20,4 +20,6 @@ public class AddTripFragment extends Fragment {
        View view = inflater.inflate(R.layout.fragment_add_trip1, container, false);
        return view;
     }
+    
+
 }

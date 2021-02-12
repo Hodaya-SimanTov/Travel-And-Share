@@ -9,8 +9,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteX="-73dp"
+        tools:layout_editor_absoluteY="-16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -21,20 +21,8 @@
                 android:id="@+id/textView12"
                 android:layout_width="150dp"
                 android:layout_height="29dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="Description:"
-                android:textColor="#4CAF50"
-                android:textSize="18sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintStart_toStartOf="@+id/textView10"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="113dp"
-                android:layout_height="38dp"
-                android:layout_marginTop="8dp"
-                android:text="Suitable For:"
                 android:textColor="#4CAF50"
                 android:textSize="18sp"
                 android:textStyle="bold|italic"
@@ -42,19 +30,31 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
             <TextView
-                android:id="@+id/textView9"
-                android:layout_width="65dp"
-                android:layout_height="36dp"
-                android:layout_marginTop="16dp"
-                android:text="Cost:"
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Suitable For:"
                 android:textColor="#4CAF50"
                 android:textSize="18sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintStart_toStartOf="@+id/textView8"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Cost:"
+                android:textColor="#4CAF50"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintStart_toStartOf="@+id/textView10"
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/Activity_AddTrip_imageTrip"
                 android:layout_width="361dp"
                 android:layout_height="218dp"
                 android:layout_marginStart="24dp"
@@ -74,19 +74,19 @@
                 android:textColor="#4CAF50"
                 android:textSize="18sp"
                 android:textStyle="bold|italic"
-                app:layout_constraintStart_toStartOf="@+id/imageView4"
-                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+                app:layout_constraintStart_toStartOf="@+id/Activity_AddTrip_imageTrip"
+                app:layout_constraintTop_toBottomOf="@+id/Activity_AddTrip_imageTrip" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName3"
-                android:layout_width="231dp"
-                android:layout_height="56dp"
+                android:id="@+id/Activity_AddTrip_nametrip"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/textView7"
-                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName4"
+                app:layout_constraintEnd_toEndOf="@+id/Activity_AddTrip_location"
                 app:layout_constraintStart_toEndOf="@+id/textView7"
                 app:layout_constraintTop_toTopOf="@+id/textView7" />
 
@@ -103,40 +103,30 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName4"
-                android:layout_width="228dp"
-                android:layout_height="45dp"
+                android:id="@+id/Activity_AddTrip_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textPersonName|textAutoComplete"
                 app:layout_constraintBottom_toBottomOf="@+id/textView8"
                 app:layout_constraintStart_toEndOf="@+id/textView8"
                 app:layout_constraintTop_toTopOf="@+id/textView8" />
 
             <EditText
-                android:id="@+id/editTextNumber"
-                android:layout_width="139dp"
-                android:layout_height="47dp"
-                android:layout_marginStart="16dp"
+                android:id="@+id/Activity_AddTrip_cost"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:drawableEnd="@drawable/ic_baseline_attach_money_24"
                 android:ems="10"
                 android:inputType="number"
                 app:layout_constraintBottom_toBottomOf="@+id/textView9"
                 app:layout_constraintStart_toEndOf="@+id/textView9"
-                app:layout_constraintTop_toTopOf="@+id/textView9"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="18dp"
-                android:layout_height="26dp"
-                android:src="@drawable/shcalimchadashim_icon"
-                app:layout_constraintBottom_toBottomOf="@+id/editTextNumber"
-                app:layout_constraintStart_toEndOf="@+id/editTextNumber"
-                app:layout_constraintTop_toTopOf="@+id/editTextNumber"
-                app:layout_constraintVertical_bias="0.6" />
+                app:layout_constraintTop_toTopOf="@+id/textView9" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName6"
+                android:id="@+id/Activity_AddTrip_description"
                 android:layout_width="0dp"
                 android:layout_height="104dp"
                 android:layout_marginTop="8dp"
@@ -146,12 +136,12 @@
                 android:ems="10"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"
-                app:layout_constraintEnd_toEndOf="@+id/imageView4"
-                app:layout_constraintStart_toStartOf="@+id/imageView4"
+                app:layout_constraintEnd_toEndOf="@+id/Activity_AddTrip_imageTrip"
+                app:layout_constraintStart_toStartOf="@+id/Activity_AddTrip_imageTrip"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/Activity_AddTrip_btn_add"
                 android:layout_width="363dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="8dp"
@@ -159,13 +149,13 @@
                 android:text="ADD TRIP"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName6"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName6"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+                app:layout_constraintEnd_toEndOf="@+id/Activity_AddTrip_description"
+                app:layout_constraintStart_toStartOf="@+id/Activity_AddTrip_description"
+                app:layout_constraintTop_toBottomOf="@+id/Activity_AddTrip_accessible" />
 
             <CheckBox
-                android:id="@+id/Families"
-                android:layout_width="wrap_content"
+                android:id="@+id/Activity_AddTrip_cb_Families"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="Families"
@@ -174,18 +164,18 @@
                 app:layout_constraintTop_toTopOf="@+id/textView10" />
 
             <CheckBox
-                android:id="@+id/checkBox2"
-                android:layout_width="wrap_content"
+                android:id="@+id/Activity_AddTrip_cb_benefactors"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Benefactors"
-                app:layout_constraintBottom_toBottomOf="@+id/Families"
-                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName4"
-                app:layout_constraintStart_toEndOf="@+id/Families"
-                app:layout_constraintTop_toTopOf="@+id/Families" />
+                app:layout_constraintBottom_toBottomOf="@+id/Activity_AddTrip_cb_Families"
+                app:layout_constraintEnd_toEndOf="@+id/Activity_AddTrip_location"
+                app:layout_constraintStart_toEndOf="@+id/Activity_AddTrip_cb_Families"
+                app:layout_constraintTop_toTopOf="@+id/Activity_AddTrip_cb_Families" />
 
             <CheckBox
-                android:id="@+id/checkBox3"
+                android:id="@+id/Activity_AddTrip_accessible"
                 style="@android:style/Widget.Holo.CompoundButton.CheckBox"
                 android:layout_width="225dp"
                 android:layout_height="43dp"
@@ -195,8 +185,8 @@
                 android:text="Accessible"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName6"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
+                app:layout_constraintStart_toStartOf="@+id/Activity_AddTrip_description"
+                app:layout_constraintTop_toBottomOf="@+id/Activity_AddTrip_description" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
