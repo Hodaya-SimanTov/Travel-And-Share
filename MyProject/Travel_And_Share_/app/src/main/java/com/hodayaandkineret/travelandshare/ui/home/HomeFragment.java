@@ -62,7 +62,6 @@ public class HomeFragment extends Fragment {
                     }
                 }
         );
-        reloadData();
         return view;
     }
     public void reloadData(){
