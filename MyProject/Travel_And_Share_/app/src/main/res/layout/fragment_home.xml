@@ -1,77 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_home_swiperRefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ECF6DF"
     tools:context=".ui.home.HomeFragment">
 
-    <ScrollView
-        android:id="@+id/scrollView3"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_home_search_bar"
-        app:layout_constraintVertical_bias="0.0">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ListView
+            android:id="@+id/fragment_home_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="60dp"
+            android:background="#ECF6DF"
+            android:cacheColorHint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_home_search_bar" />
 
-    </ScrollView>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fragment_home_search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="#CBF6FBEF"
-        android:paddingLeft="45dp"
-        app:boxBackgroundColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/nav_host_fragment">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/fragment_home_text_input_search"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fragment_home_search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:background="#CBF6FBEF"
-            android:hint="Search Trip or Route" />
+            android:paddingLeft="45dp"
+            app:boxBackgroundColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/nav_host_fragment">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fragment_home_text_input_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#CBF6FBEF"
+                android:hint="Search Trip or Route" />
 
-    <ImageView
-        android:id="@+id/fragment_home_location_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_home_search_bar"
-        app:layout_constraintStart_toStartOf="@+id/fragment_home_search_bar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/location_icon" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageButton
-        android:id="@+id/fragment_hone_search_button"
-        style="@style/Widget.AppCompat.ImageButton"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@null"
-        android:scaleType="fitCenter"
-        android:src="@drawable/search_button"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_home_search_bar"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_home_search_bar"
-        app:layout_constraintTop_toTopOf="@+id/fragment_home_search_bar" />
+        <ImageView
+            android:id="@+id/fragment_home_location_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_home_search_bar"
+            app:layout_constraintStart_toStartOf="@+id/fragment_home_search_bar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/location_icon" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageButton
+            android:id="@+id/fragment_hone_search_button"
+            style="@style/Widget.AppCompat.ImageButton"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/search_button"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_home_search_bar"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_home_search_bar"
+            app:layout_constraintTop_toTopOf="@+id/fragment_home_search_bar" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

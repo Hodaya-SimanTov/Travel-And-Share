@@ -15,7 +15,11 @@
         android:id="@+id/nav_addTrip"
         android:name="com.hodayaandkineret.travelandshare.ui.AddTrip.AddTripFragment"
         android:label="AddTrip"
-        tools:layout="@layout/fragment_add_trip1" />
+        tools:layout="@layout/fragment_add_trip1" >
+        <action
+            android:id="@+id/action_nav_addTrip_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_myTrips"

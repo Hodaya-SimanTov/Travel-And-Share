@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.hodayaandkineret.travelandshare.Model.ModelFirebase;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Date;
@@ -56,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
     DatabaseReference mRef;
     ProgressDialog myLoadingDialog;
     StorageReference storageRef;
-
+    Boolean flagCheckImage=false;
     Uri imageUri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +136,7 @@ public class RegisterActivity extends AppCompatActivity {
                         imageUri=data.getData();
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
                         ProfilImage.setImageBitmap(selectedImage);
-
+                        flagCheckImage=true;
 
                     }
                     break;
@@ -142,6 +144,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if( resultCode==RESULT_OK && data!=null){
                         imageUri=data.getData();
                         ProfilImage.setImageURI(imageUri);
+                        flagCheckImage=true;
                     }
                     break;
             }
@@ -168,7 +171,7 @@ public class RegisterActivity extends AppCompatActivity {
         else if(username.isEmpty() || username.length()<3)  {
             showError(InputsName,"UserName is not valid");
         }
-        else   if(imageUri==null) {
+        else   if(flagCheckImage==false) {
             Toast.makeText(this,"Please select an image",Toast.LENGTH_SHORT).show();
         }
         else {
@@ -208,42 +211,96 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void SaveDataRealTime(String username) {
-        storageRef= FirebaseStorage.getInstance().getReference().child("ProfilImages");
-        storageRef.child(myUser.getUid()).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                if(task.isSuccessful()){
-                    storageRef.child(myUser.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            HashMap hashMap=new HashMap();
-                            hashMap.put("username",username);
-                            hashMap.put("profilImage",uri.toString());
-                            hashMap.put("LastName","");
-                            hashMap.put("BirthDate","");
-                            hashMap.put("status","offline");
+        Bitmap bitmap = ((BitmapDrawable) ProfilImage.getDrawable()).getBitmap();
+        uploadImage(bitmap, myUser.getUid(), new ModelFirebase.UploadImageListener() {
 
-                            mRef.child(myUser.getUid()).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
-                                @Override
-                                public void onSuccess(Object o) {
-                                    myLoadingDialog.dismiss();
-                                    Toast.makeText(RegisterActivity.this,"Account  Created!",Toast.LENGTH_LONG).show();
-                                    Intent intent=new Intent(RegisterActivity.this,MainActivity.class);
-                                    startActivity(intent);
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    myLoadingDialog.dismiss();
-                                    Toast.makeText(RegisterActivity.this,e.toString(),Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-                    });
-                }
+            @Override
+            public void onComplete(String url) {
+                HashMap hashMap = new HashMap();
+                hashMap.put("username", username);
+                hashMap.put("profilImage", url);
+                hashMap.put("LastName", "");
+                hashMap.put("BirthDate", "");
+                hashMap.put("status", "offline");
+                mRef.child(myUser.getUid()).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
+                    @Override
+                    public void onSuccess(Object o) {
+                        myLoadingDialog.dismiss();
+                        Toast.makeText(RegisterActivity.this, "Account  Created!", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        myLoadingDialog.dismiss();
+                        Toast.makeText(RegisterActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
-        }
+    }
+//        storageRef= FirebaseStorage.getInstance().getReference().child("ProfilImages");
+//        storageRef.child(myUser.getUid()).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+//                if(task.isSuccessful()){
+//                    storageRef.child(myUser.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                        @Override
+//                        public void onSuccess(Uri uri) {
+//                            HashMap hashMap=new HashMap();
+//                            hashMap.put("username",username);
+//                            hashMap.put("profilImage",uri.toString());
+//                            hashMap.put("LastName","");
+//                            hashMap.put("BirthDate","");
+//                            hashMap.put("status","offline");
+//
+//                            mRef.child(myUser.getUid()).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
+//                                @Override
+//                                public void onSuccess(Object o) {
+//                                    myLoadingDialog.dismiss();
+//                                    Toast.makeText(RegisterActivity.this,"Account  Created!",Toast.LENGTH_LONG).show();
+//                                    Intent intent=new Intent(RegisterActivity.this,MainActivity.class);
+//                                    startActivity(intent);
+//                                }
+//                            }).addOnFailureListener(new OnFailureListener() {
+//                                @Override
+//                                public void onFailure(@NonNull Exception e) {
+//                                    myLoadingDialog.dismiss();
+//                                    Toast.makeText(RegisterActivity.this,e.toString(),Toast.LENGTH_SHORT).show();
+//                                }
+//                            });
+//                        }
+//                    });
+//                }
+//            }
+//        });
+//        }
+    public static void uploadImage(Bitmap imageBmp, String fileName, final ModelFirebase.UploadImageListener listener){
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        final StorageReference imagesRef = storage.getReference().child("ProfilImages").child(fileName);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+        UploadTask uploadTask = imagesRef.putBytes(data);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(Exception exception) {
+                listener.onComplete(null);
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Uri downloadUrl = uri;
+                        listener.onComplete(downloadUrl.toString());
+                    }
+                });
+            }
+        });
+    }
 
     public void SaveData(String username){
         storageRef= FirebaseStorage.getInstance().getReference().child("ProfilImages");
