@@ -1,6 +1,8 @@
 package com.hodayaandkineret.travelandshare.Model;
 
 import android.net.Uri;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
@@ -12,7 +14,7 @@ import com.google.firebase.firestore.FieldValue;
 import java.util.HashMap;
 import java.util.Map;
 @Entity
-public class Post {
+public class Post implements Parcelable {
     @PrimaryKey
     @NonNull
     private String id;
@@ -31,6 +33,36 @@ public class Post {
     public Post() {
 
     }
+
+    protected Post(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        cost = in.readString();
+        location = in.readString();
+        forFamilies = in.readByte() != 0;
+        forBenefactors = in.readByte() != 0;
+        Accessible = in.readByte() != 0;
+        imageUrl = in.readString();
+        openText = in.readString();
+        ownerUid = in.readString();
+        if (in.readByte() == 0) {
+            lastUpdated = null;
+        } else {
+            lastUpdated = in.readLong();
+        }
+    }
+
+    public static final Creator<Post> CREATOR = new Creator<Post>() {
+        @Override
+        public Post createFromParcel(Parcel in) {
+            return new Post(in);
+        }
+
+        @Override
+        public Post[] newArray(int size) {
+            return new Post[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -145,5 +177,30 @@ public class Post {
         ownerUid=(String)map.get("ownerUid");
         Timestamp ts = (Timestamp)map.get("lastUpdated");
         lastUpdated = ts.getSeconds();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(cost);
+        dest.writeString(location);
+        dest.writeByte((byte) (forFamilies ? 1 : 0));
+        dest.writeByte((byte) (forBenefactors ? 1 : 0));
+        dest.writeByte((byte) (Accessible ? 1 : 0));
+        dest.writeString(imageUrl);
+        dest.writeString(openText);
+        dest.writeString(ownerUid);
+        if (lastUpdated == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(lastUpdated);
+        }
     }
 }

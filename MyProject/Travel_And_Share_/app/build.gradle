@@ -5,7 +5,7 @@ plugins {
 apply plugin: 'com.android.application'
 // Add the following line:
 apply plugin: 'com.google.gms.google-services'  // Google Services plugin
-
+apply plugin: "androidx.navigation.safeargs"
 
 android {
     compileSdkVersion 30
@@ -17,7 +17,6 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         javaCompileOptions {
