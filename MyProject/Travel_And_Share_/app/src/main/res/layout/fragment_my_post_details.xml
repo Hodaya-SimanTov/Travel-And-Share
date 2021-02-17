@@ -4,12 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.AddTrip.AddTripFragment">
+    android:background="#ECF6DF"
+    tools:context=".ui.MyTrips.myPostDetailsFragment">
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ECF6DF">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -20,7 +28,7 @@
                 android:id="@+id/textView12"
                 android:layout_width="150dp"
                 android:layout_height="29dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="Description:"
                 android:textColor="#4CAF50"
                 android:textSize="18sp"
@@ -53,15 +61,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
             <ImageView
-                android:id="@+id/Fragment_AddTrip_imageTrip"
-                android:layout_width="358dp"
-                android:layout_height="190dp"
+                android:id="@+id/Fragment_my_post_details__image"
+                android:layout_width="361dp"
+                android:layout_height="218dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="24dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/addimage"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,11 +83,11 @@
                 android:textColor="#4CAF50"
                 android:textSize="18sp"
                 android:textStyle="bold|italic"
-                app:layout_constraintStart_toStartOf="@+id/Fragment_AddTrip_imageTrip"
-                app:layout_constraintTop_toBottomOf="@+id/Fragment_AddTrip_imageTrip" />
+                app:layout_constraintStart_toStartOf="@+id/Fragment_my_post_details__image"
+                app:layout_constraintTop_toBottomOf="@+id/Fragment_my_post_details__image" />
 
             <EditText
-                android:id="@+id/Fragment_AddTrip_nametrip"
+                android:id="@+id/Fragment_my_post_details__nametrip"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -86,7 +95,7 @@
                 android:inputType="textPersonName"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/textView7"
-                app:layout_constraintEnd_toEndOf="@+id/Fragment_AddTrip_location"
+                app:layout_constraintEnd_toEndOf="@+id/Fragment_my_post_details__location"
                 app:layout_constraintStart_toEndOf="@+id/textView7"
                 app:layout_constraintTop_toTopOf="@+id/textView7" />
 
@@ -103,7 +112,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <EditText
-                android:id="@+id/Fragment_AddTrip_location"
+                android:id="@+id/Fragment_my_post_details__location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -114,7 +123,7 @@
                 app:layout_constraintTop_toTopOf="@+id/textView8" />
 
             <EditText
-                android:id="@+id/Fragment_AddTrip_cost"
+                android:id="@+id/Fragment_my_post_details_cost"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -126,7 +135,7 @@
                 app:layout_constraintTop_toTopOf="@+id/textView9" />
 
             <EditText
-                android:id="@+id/Fragment_AddTrip_description"
+                android:id="@+id/Fragment_my_post_details_description"
                 android:layout_width="0dp"
                 android:layout_height="104dp"
                 android:layout_marginTop="8dp"
@@ -136,28 +145,28 @@
                 android:ems="10"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"
-                app:layout_constraintEnd_toEndOf="@+id/Fragment_AddTrip_imageTrip"
-                app:layout_constraintStart_toStartOf="@+id/Fragment_AddTrip_imageTrip"
+                app:layout_constraintEnd_toEndOf="@+id/Fragment_my_post_details__image"
+                app:layout_constraintStart_toStartOf="@+id/Fragment_my_post_details__image"
                 app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
             <Button
-                android:id="@+id/Fradment_my_post_details__save_btn"
-                android:layout_width="370dp"
-                android:layout_height="36dp"
-                android:layout_marginTop="4dp"
+                android:id="@+id/Fragment_my_post_details__delete_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="32dp"
-                android:background="@drawable/batton_add_trip"
-                android:text="ADD TRIP"
+                android:background="@drawable/delete_btn"
+                android:text="DELETE"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                app:backgroundTint="#EF3131"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/Fragment_AddTrip_description"
-                app:layout_constraintHorizontal_bias="0.555"
-                app:layout_constraintStart_toStartOf="@+id/Fragment_AddTrip_description"
-                app:layout_constraintTop_toBottomOf="@+id/Fragment_AddTrip_accessible" />
+                app:layout_constraintStart_toStartOf="@+id/Fragment_my_post_details_accessible"
+                app:layout_constraintTop_toBottomOf="@+id/Fragment_my_post_details_accessible"
+                app:layout_constraintVertical_bias="1.0" />
 
             <CheckBox
-                android:id="@+id/Fragment_AddTrip_cb_Families"
+                android:id="@+id/Fragment_my_post_details_cb_Families"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -172,13 +181,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Benefactors"
-                app:layout_constraintBottom_toBottomOf="@+id/Fragment_AddTrip_cb_Families"
-                app:layout_constraintEnd_toEndOf="@+id/Fragment_AddTrip_location"
-                app:layout_constraintStart_toEndOf="@+id/Fragment_AddTrip_cb_Families"
-                app:layout_constraintTop_toTopOf="@+id/Fragment_AddTrip_cb_Families" />
+                app:layout_constraintBottom_toBottomOf="@+id/Fragment_my_post_details_cb_Families"
+                app:layout_constraintEnd_toEndOf="@+id/Fragment_my_post_details__location"
+                app:layout_constraintStart_toEndOf="@+id/Fragment_my_post_details_cb_Families"
+                app:layout_constraintTop_toTopOf="@+id/Fragment_my_post_details_cb_Families" />
 
             <CheckBox
-                android:id="@+id/Fragment_AddTrip_accessible"
+                android:id="@+id/Fragment_my_post_details_accessible"
                 style="@android:style/Widget.Holo.CompoundButton.CheckBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -187,25 +196,42 @@
                 android:text="Accessible"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/Fragment_AddTrip_description"
-                app:layout_constraintTop_toBottomOf="@+id/Fragment_AddTrip_description" />
+                app:layout_constraintStart_toStartOf="@+id/Fragment_my_post_details_description"
+                app:layout_constraintTop_toBottomOf="@+id/Fragment_my_post_details_description" />
 
             <ProgressBar
-                android:id="@+id/Fragment_AddTrip_prossbarr"
+                android:id="@+id/Fragment_my_post_details_prossbarr"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="132dp"
                 android:layout_height="109dp"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="@+id/Fradment_my_post_details__save_btn"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.462"
+                app:layout_constraintHorizontal_bias="0.505"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.553" />
+                app:layout_constraintVertical_bias="0.529" />
+
+            <ImageView
+                android:id="@+id/Fragment_my_post_details_editImage"
+                android:layout_width="73dp"
+                android:layout_height="55dp"
+                android:src="@drawable/ic_baseline_edit_24"
+                app:layout_constraintBottom_toBottomOf="@+id/Fragment_my_post_details__image"
+                app:layout_constraintEnd_toEndOf="@+id/Fragment_my_post_details__image" />
+
+            <Button
+                android:id="@+id/Fragment_my_post_details__save_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/batton_add_trip"
+                android:drawableBottom="@null"
+                android:text="SAVE"
+                app:layout_constraintBottom_toBottomOf="@+id/Fragment_my_post_details__delete_btn"
+                app:layout_constraintEnd_toEndOf="@+id/Fragment_my_post_details_description"
+                app:layout_constraintTop_toTopOf="@+id/Fragment_my_post_details__delete_btn" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -1,15 +1,17 @@
 package com.hodayaandkineret.travelandshare.Model;
 
+
+
 import android.graphics.Bitmap;
 import android.net.Uri;
-
 import androidx.annotation.NonNull;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -18,15 +20,14 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.io.ByteArrayOutputStream;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+
 
 public class ModelFirebase {
     StorageReference storageRef;
+
     public void addPost(Post post,  Model.AddPostListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference ref = db.collection("PostInformation").document();
@@ -68,17 +69,21 @@ public class ModelFirebase {
         });
     }
 
-    public static void getAllUserPosts(String userId,Model.GetAllUserPostsListener listener) {
+    public static void getAllUserPosts(Long lastUpdated,Model.GetAllUserPostsListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("PostInformation").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        Timestamp ts = new Timestamp(lastUpdated,0);
+        FirebaseUser muser= FirebaseAuth.getInstance().getCurrentUser();
+        db.collection("PostInformation").whereGreaterThanOrEqualTo("lastUpdated",ts).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()){
                     List<Post> postList = new LinkedList<Post>();
                     for (QueryDocumentSnapshot doc: task.getResult()) {
-                        Post post = doc.toObject(Post.class);
-                        if(post.getOwnerUid().equals(userId))
+                        Post post =new Post();
+                        post.fromMap(doc.getData());
+                        if(post.getOwnerUid().equals(muser.getUid())) {
                             postList.add(post);
+                        }
                     }
                     listener.onComplete(postList);
                 }else{
@@ -101,6 +106,21 @@ public class ModelFirebase {
                 }
             }
         });
+    }
+
+    public void deletePost(String postId, Model.deletePostListener listener) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+       db.collection("PostInformation").document(postId).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+           @Override
+           public void onSuccess(Void aVoid) {
+               listener.onComplete(true);
+           }
+       }).addOnFailureListener(new OnFailureListener() {
+           @Override
+           public void onFailure(@NonNull Exception e) {
+               listener.onComplete(false);
+           }
+       });
     }
 
     public interface UploadImageListener{

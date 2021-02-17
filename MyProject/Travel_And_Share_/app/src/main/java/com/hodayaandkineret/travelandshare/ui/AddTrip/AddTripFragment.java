@@ -21,11 +21,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FieldValue;
 import com.hodayaandkineret.travelandshare.Model.Model;
 import com.hodayaandkineret.travelandshare.Model.ModelFirebase;
 import com.hodayaandkineret.travelandshare.Model.Post;
@@ -54,9 +51,9 @@ public class AddTripFragment extends Fragment {
         InputCost=view.findViewById(R.id.Fragment_AddTrip_cost);
         InputDescription=view.findViewById(R.id.Fragment_AddTrip_description);
         cbFamily=view.findViewById(R.id.Fragment_AddTrip_cb_Families);
-        cbBenefactors=view.findViewById(R.id.Fragment_AddTrip_cb_benefactors);
+        cbBenefactors=view.findViewById(R.id.Fragment_my_post_details_cb_benefactors);
         cbAccessible=view.findViewById(R.id.Fragment_AddTrip_accessible);
-        btn_addTrip=view.findViewById(R.id.Fragment_AddTrip_btn_add);
+        btn_addTrip=view.findViewById(R.id.Fradment_my_post_details__save_btn);
         progressBar.setVisibility(View.INVISIBLE);
         myUser= FirebaseAuth.getInstance().getCurrentUser();
         InputImageTrip.setOnClickListener(new View.OnClickListener() {

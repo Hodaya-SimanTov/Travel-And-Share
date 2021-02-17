@@ -12,6 +12,7 @@ public class PostListViewModel extends ViewModel {
     private LiveData<List<Post>>postList;
     public PostListViewModel(){
         postList= Model.instance.getAllPosts();
+
     }
     LiveData<List<Post>>getList(){return postList;}
 

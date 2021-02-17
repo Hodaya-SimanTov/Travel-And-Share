@@ -29,7 +29,11 @@
         android:id="@+id/nav_myTrips"
         android:name="com.hodayaandkineret.travelandshare.ui.MyTrips.MyTripsFragment"
         android:label="My Trips And Routes"
-        tools:layout="@layout/fragment_mytrips" />
+        tools:layout="@layout/fragment_mytrips" >
+        <action
+            android:id="@+id/action_nav_myTrips_to_myPostDetailsFragment"
+            app:destination="@id/myPostDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_myFavorites"
         android:name="com.hodayaandkineret.travelandshare.ui.MyFavoritesFragment.MyFvorites"
@@ -53,5 +57,19 @@
         <argument
             android:name="myPost"
             app:argType="com.hodayaandkineret.travelandshare.Model.Post" />
+    </fragment>
+    <fragment
+        android:id="@+id/myPostDetailsFragment"
+        android:name="com.hodayaandkineret.travelandshare.ui.MyTrips.myPostDetailsFragment"
+        android:label="fragment_my_post_details"
+        tools:layout="@layout/fragment_my_post_details" >
+        <argument
+            android:name="myPost"
+            app:argType="com.hodayaandkineret.travelandshare.Model.Post" />
+        <action
+            android:id="@+id/action_myPostDetailsFragment_to_nav_myTrips"
+            app:destination="@id/nav_myTrips"
+            app:popUpTo="@id/nav_myTrips"
+            app:popUpToInclusive="false" />
     </fragment>
 </navigation>

@@ -31,4 +31,8 @@ public class ModelSql {
         task.execute();
 
     }
+
+    public LiveData<List<Post>> getAllUserPosts(String userId ) {
+        return AppLocalDB.db.postDao().getAllUserPosts(userId);
+    }
 }
