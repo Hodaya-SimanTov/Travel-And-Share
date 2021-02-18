@@ -18,7 +18,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="60dp"
+<<<<<<< Updated upstream
             android:background="@drawable/wall"
+=======
+            android:background="#FFFFFF"
+>>>>>>> Stashed changes
             android:cacheColorHint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -104,6 +104,7 @@ public class AddTripFragment extends Fragment {
             post.setForFamilies(cbFamily.isChecked());
             post.setForBenefactors(cbBenefactors.isChecked());
             post.setOwnerUid(myUser.getUid());
+            post.setDelete(false);
             savePostInFirebase(post);
         }
 

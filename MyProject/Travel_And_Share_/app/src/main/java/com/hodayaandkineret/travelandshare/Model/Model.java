@@ -50,6 +50,12 @@ public class Model {
     public interface refreshAllUserPostListener{
         void onComplete();
     }
+    public interface DeletePostListener{
+        void onComplete();
+    }
+    public void DeletePost(Post p,DeletePostListener lisener){
+        PostModelFireBase.deletePost(p,lisener);
+    }
     public void refreshAllUserPost(final refreshAllUserPostListener listener) {
         //1. get local last update date
         final SharedPreferences sp = MyApplication.getAppContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
@@ -61,9 +67,21 @@ public class Model {
                 //3. insert the new updates to the local db
                 long lastU = 0;
                 for (Post p : result) {
-                    ModelSql.addPost(p, null);
-                    if (p.getLastUpdated() > lastU) {
-                        lastU = p.getLastUpdated();
+                    if(p.isDelete()){
+                        ModelSql.deletePost(p,new DeletePostListener(){
+
+                            @Override
+                            public void onComplete() {
+
+                            }
+                        }
+
+                       );
+                    }else {
+                        ModelSql.addPost(p, null);
+                        if (p.getLastUpdated() > lastU) {
+                            lastU = p.getLastUpdated();
+                        }
                     }
                 }
                 //4. update the local last update date
@@ -98,13 +116,8 @@ public class Model {
 //
 //    }
 //
-    public interface deletePostListener{
-        void onComplete(boolean isDelete);
-    }
-    public void deletePost(final String postId, final deletePostListener listener){
-        PostModelFireBase.deletePost(postId,listener);
 
-    }
+
     public interface refreshAllPostListener{
     void onComplete();
     }
@@ -119,9 +132,19 @@ public class Model {
                 //3. insert the new updates to the local db
                 long lastU = 0;
                 for (Post p : result) {
-                    ModelSql.addPost(p, null);
-                    if (p.getLastUpdated() > lastU) {
-                        lastU = p.getLastUpdated();
+                    if(p.isDelete()){
+                        ModelSql.deletePost(p,new DeletePostListener(){
+                            @Override
+                            public void onComplete() {
+
+                            }
+                        });
+                    }
+                    else {
+                        ModelSql.addPost(p, null);
+                        if (p.getLastUpdated() > lastU) {
+                            lastU = p.getLastUpdated();
+                        }
                     }
                 }
                 //4. update the local last update date
