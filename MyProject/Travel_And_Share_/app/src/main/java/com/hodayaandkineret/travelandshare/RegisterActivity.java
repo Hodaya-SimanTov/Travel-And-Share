@@ -220,7 +220,6 @@ public class RegisterActivity extends AppCompatActivity {
                 hashMap.put("username", username);
                 hashMap.put("profilImage", url);
                 hashMap.put("LastName", "");
-                hashMap.put("BirthDate", "");
                 hashMap.put("status", "offline");
                 mRef.child(myUser.getUid()).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
                     @Override
