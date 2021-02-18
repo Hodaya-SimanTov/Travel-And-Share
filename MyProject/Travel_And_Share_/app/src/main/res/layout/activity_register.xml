@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bacgraundlogin"
+    android:background="@drawable/regbackg"
     tools:context=".RegisterActivity">
 
     <ScrollView
@@ -14,17 +14,18 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginTop="72dp"
+                android:layout_marginEnd="50dp"
                 android:text="SIGN-UP"
-                android:textColor="#3C6E3E"
+                android:textColor="#061775"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.524"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,14 +33,14 @@
                 android:id="@+id/activity_register_profile_image"
                 android:layout_width="185dp"
                 android:layout_height="131dp"
-                android:layout_marginTop="44dp"
+                android:layout_marginTop="32dp"
                 android:src="@drawable/propilnew"
                 android:tint="#F8F5F5"
                 app:civ_border_color="#FBFBFB"
                 app:civ_border_width="2dp"
                 app:civ_circle_background_color="#FFFFFF"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView"
+                app:layout_constraintStart_toStartOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -49,7 +50,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="90dp"
+                app:boxStrokeColor="#069CDF"
+                app:hintTextColor="#069CDF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/activity_register_profile_image">
@@ -70,7 +73,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="90dp"
+                app:boxStrokeColor="#069CDF"
+                app:hintTextColor="#069CDF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/activity_register_input_userName">
@@ -93,7 +98,7 @@
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:backgroundTint="#3C6E3E"
+                app:backgroundTint="#061775"
                 app:layout_constraintEnd_toEndOf="@+id/activity_register_input_verify_password"
                 app:layout_constraintStart_toStartOf="@+id/activity_register_input_verify_password"
                 app:layout_constraintTop_toBottomOf="@+id/activity_register_input_verify_password" />
@@ -104,6 +109,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                app:boxStrokeColor="#069CDF"
+                app:hintTextColor="#069CDF"
                 app:layout_constraintEnd_toEndOf="@+id/activity_register_input_mail"
                 app:layout_constraintStart_toStartOf="@+id/activity_register_input_mail"
                 app:layout_constraintTop_toBottomOf="@+id/activity_register_input_mail">
@@ -122,6 +129,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                app:boxStrokeColor="#069CDF"
+                app:hintTextColor="#069CDF"
                 app:layout_constraintEnd_toEndOf="@+id/activity_register_input_password"
                 app:layout_constraintStart_toStartOf="@+id/activity_register_input_password"
                 app:layout_constraintTop_toBottomOf="@+id/activity_register_input_password">
@@ -141,6 +150,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="32dp"
                 android:text="Already Have An Account"
+                android:textColor="#3B3C43"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
