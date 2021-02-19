@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
@@ -56,10 +57,12 @@ public class EditProfileFragment extends Fragment {
     FirebaseUser m2User;
     DatabaseReference m2UserRef;
     CircleImageView editProfileImage;
-    EditText editProfileName;
-    EditText editProfileLastName;
-    EditText editProfilePassword;
-    String imageV, nameV, lastNameV, passwordV;
+    TextInputLayout editProfileName, editProfileLastName;
+    EditText t1,t2;
+//    EditText editProfileName;
+//    EditText editProfileLastName;
+
+    String imageV, nameV, lastNameV;
     Button updateProfileBtn;
     Uri imageUri1;
     Boolean flagCheckImage1 = false;
@@ -79,6 +82,8 @@ public class EditProfileFragment extends Fragment {
         editProfileImage = view.findViewById(R.id.fragment_edit_profile_imageview);
         editProfileName = view.findViewById(R.id.fragment_edit_profile_name);
         editProfileLastName = view.findViewById(R.id.fragment_edit_profile_lastname);
+        t1 = view.findViewById(R.id.etid_profile_name);
+        t2 = view.findViewById(R.id.edit_profile_lastname);
         //editProfileBirthDate = view.findViewById(R.id.fragment_edit_profile_birthDate);
         updateProfileBtn = view.findViewById(R.id.fragment_edit_profile_saveBtn);
         myLoadingDialog=new ProgressDialog(getContext());
@@ -98,8 +103,8 @@ public class EditProfileFragment extends Fragment {
         myLoadingDialog.setCanceledOnTouchOutside(false);
         myLoadingDialog.show();
         String newPass, newName, newLastName;
-        newName = editProfileName.getText().toString();
-        newLastName = editProfileLastName.getText().toString();
+        newName = editProfileName.getEditText().getText().toString();
+        newLastName = editProfileLastName.getEditText().getText().toString();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         mRef=FirebaseDatabase.getInstance().getReference().child("User");
 
@@ -116,7 +121,7 @@ public class EditProfileFragment extends Fragment {
                         @Override
                         public void onSuccess(Object o) {
                             myLoadingDialog.dismiss();
-                            Toast.makeText(getContext(), "Account  Created!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "Profile Updated!", Toast.LENGTH_LONG).show();
 
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -140,9 +145,13 @@ public class EditProfileFragment extends Fragment {
                 if (snapshot.exists()) {
                     imageV = snapshot.child("profilImage").getValue().toString();
                     nameV = snapshot.child("username").getValue().toString();
+                    lastNameV = snapshot.child("LastName").getValue().toString();
+
                     Picasso.get().load(imageV).into(editProfileImage);
-                    editProfileName.setText(nameV);
-                    editProfileLastName.setText(snapshot.child("LastName").getValue().toString());
+                    t1.setText(nameV);
+                    t2.setText(lastNameV);
+                    //editProfileName.setText(nameV);
+                    //editProfileLastName.setText(snapshot.child("LastName").getValue().toString());
 
 
                 }
@@ -158,7 +167,11 @@ public class EditProfileFragment extends Fragment {
 
     }
 
-    private void showError(EditText field, String text) {
+//    private void showError(EditText field, String text) {
+//        field.setError(text);
+//        field.requestFocus();
+//    }
+    private void showError(TextInputLayout field, String text) {
         field.setError(text);
         field.requestFocus();
     }
