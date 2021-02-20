@@ -1,7 +1,6 @@
 package com.hodayaandkineret.travelandshare.Model;
 
 
-
 import android.graphics.Bitmap;
 import android.net.Uri;
 import androidx.annotation.NonNull;
@@ -59,7 +58,26 @@ public class ModelFirebase {
                     for (QueryDocumentSnapshot doc: task.getResult()) {
                         Post post =new Post();
                         post.fromMap(doc.getData());
+
+                            postList.add(post);
+
+                    }
+                    listener.onComplete(postList);
+                }else{
+                    listener.onComplete(null);
+                }
+            }
+        });
+        db.collection("PostInformation").whereGreaterThanOrEqualTo("isDelete",true).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()){
+                    List<Post> postList = new LinkedList<Post>();
+                    for (QueryDocumentSnapshot doc: task.getResult()) {
+                        Post post =new Post();
+                        post.fromMap(doc.getData());
                         postList.add(post);
+
                     }
                     listener.onComplete(postList);
                 }else{
@@ -108,21 +126,21 @@ public class ModelFirebase {
         });
     }
 
-    public void deletePost(String postId, Model.deletePostListener listener) {
+    public void deletePost(Post post, Model.DeletePostListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-       db.collection("PostInformation").document(postId).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+        post.setDelete(true);
+       db.collection("PostInformation").document(post.getId()).update(post.toMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
            @Override
            public void onSuccess(Void aVoid) {
-               listener.onComplete(true);
+               listener.onComplete();
            }
        }).addOnFailureListener(new OnFailureListener() {
            @Override
            public void onFailure(@NonNull Exception e) {
-               listener.onComplete(false);
+               listener.onComplete();
            }
        });
     }
-
     public interface UploadImageListener{
         public void onComplete(String url);
     }
@@ -153,5 +171,3 @@ public class ModelFirebase {
         });
     }
 }
-
-

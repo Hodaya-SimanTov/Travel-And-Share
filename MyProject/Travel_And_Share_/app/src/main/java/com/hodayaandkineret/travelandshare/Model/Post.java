@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.Map;
 @Entity
 public class Post implements Parcelable {
+
+    public boolean IsDelete;
     @PrimaryKey
     @NonNull
     private String id;
@@ -30,15 +32,24 @@ public class Post implements Parcelable {
     private Long lastUpdated;
 
 
+
+
     public Post() {
 
     }
+    public boolean isDelete() {
+        return IsDelete;
+    }
 
+    public void setDelete(boolean delete) {
+        IsDelete = delete;
+    }
     protected Post(Parcel in) {
         id = in.readString();
         name = in.readString();
         cost = in.readString();
         location = in.readString();
+        IsDelete = in.readByte() != 0;
         forFamilies = in.readByte() != 0;
         forBenefactors = in.readByte() != 0;
         Accessible = in.readByte() != 0;
@@ -161,6 +172,7 @@ public class Post implements Parcelable {
         result.put("imageUrl",imageUrl);
         result.put("openText",openText);
         result.put("ownerUid",ownerUid);
+        result.put("isDelete",IsDelete);
         result.put("lastUpdated", FieldValue.serverTimestamp());
         return result;
     }
@@ -177,7 +189,9 @@ public class Post implements Parcelable {
         ownerUid=(String)map.get("ownerUid");
         Timestamp ts = (Timestamp)map.get("lastUpdated");
         lastUpdated = ts.getSeconds();
+        IsDelete=(Boolean)map.get("isDelete");
     }
+
 
     @Override
     public int describeContents() {
@@ -186,21 +200,6 @@ public class Post implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
-        dest.writeString(name);
-        dest.writeString(cost);
-        dest.writeString(location);
-        dest.writeByte((byte) (forFamilies ? 1 : 0));
-        dest.writeByte((byte) (forBenefactors ? 1 : 0));
-        dest.writeByte((byte) (Accessible ? 1 : 0));
-        dest.writeString(imageUrl);
-        dest.writeString(openText);
-        dest.writeString(ownerUid);
-        if (lastUpdated == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeLong(lastUpdated);
-        }
+
     }
 }

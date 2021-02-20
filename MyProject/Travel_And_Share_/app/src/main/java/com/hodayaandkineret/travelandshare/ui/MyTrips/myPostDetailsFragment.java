@@ -66,16 +66,10 @@ public class myPostDetailsFragment extends Fragment {
 
     private void deletePost(View view) {
         progressBar.setVisibility(View.VISIBLE);
-        Model.instance.deletePost(post.getId(), new Model.deletePostListener() {
+        Model.instance.DeletePost(post,new Model.DeletePostListener() {
             @Override
-            public void onComplete(boolean isDelete) {
+            public void onComplete() {
                 progressBar.setVisibility(View.INVISIBLE);
-                if(isDelete==true){
-                    Toast.makeText(getContext(),"Post is delete",Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(getContext(),"Delete the post  is fail",Toast.LENGTH_SHORT).show();
-                }
                 Navigation.findNavController(view).navigate(R.id.action_myPostDetailsFragment_to_nav_myTrips);
             }
 

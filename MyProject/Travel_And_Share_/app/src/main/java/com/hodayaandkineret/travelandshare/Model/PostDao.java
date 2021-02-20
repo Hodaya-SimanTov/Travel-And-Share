@@ -2,6 +2,7 @@ package com.hodayaandkineret.travelandshare.Model;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -18,4 +19,6 @@ public interface PostDao {
     void insertAll(Post... posts);
     @Query("select * from Post where ownerUid=:userId")
     LiveData<List<Post>> getAllUserPosts(String userId);
+    @Delete
+    void deletePost(Post post);
 }
