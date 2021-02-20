@@ -10,7 +10,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/editproff"
+        android:background="@drawable/backgr"
         tools:layout_editor_absoluteX="-46dp"
         tools:layout_editor_absoluteY="-99dp">
 
