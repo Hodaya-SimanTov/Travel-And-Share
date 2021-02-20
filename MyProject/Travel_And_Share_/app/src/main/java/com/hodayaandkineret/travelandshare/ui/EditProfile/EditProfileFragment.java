@@ -71,6 +71,7 @@ public class EditProfileFragment extends Fragment {
     Boolean flagCheckImage1 = false;
     DatabaseReference mRef;
     ProgressDialog myLoadingDialog;
+    private static final int RESULT_CANCELED =0 ;
     private static final int RESULT_OK =-1 ;
 
 
@@ -90,6 +91,7 @@ public class EditProfileFragment extends Fragment {
         //editProfileBirthDate = view.findViewById(R.id.fragment_edit_profile_birthDate);
         updateProfileBtn = view.findViewById(R.id.fragment_edit_profile_saveBtn);
         myLoadingDialog=new ProgressDialog(getContext());
+        getInformationForFirebase();
         editProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,8 +175,8 @@ public class EditProfileFragment extends Fragment {
         }
     }
 
-    public void onStart() {
-        super.onStart();
+    public void getInformationForFirebase() {
+
         m2UserRef.child(m2User.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -222,31 +224,7 @@ public class EditProfileFragment extends Fragment {
         return result;
     }
 
-    public static void uploadImage(Bitmap imageBmp, String fileName, final ModelFirebase.UploadImageListener listener){
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        final StorageReference imagesRef = storage.getReference().child("ProfilImages").child(fileName);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] data = baos.toByteArray();
-        UploadTask uploadTask = imagesRef.putBytes(data);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(Exception exception) {
-                listener.onComplete(null);
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        Uri downloadUrl = uri;
-                        listener.onComplete(downloadUrl.toString());
-                    }
-                });
-            }
-        });
-    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
