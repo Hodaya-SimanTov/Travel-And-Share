@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hodayaandkineret.travelandshare.Model.Model;
@@ -34,7 +35,9 @@ public class AddTripFragment extends Fragment {
     FirebaseUser myUser;
     ProgressBar progressBar;
     ImageView InputImageTrip;
-    EditText InputName,InputLocation,InputCost,InputDescription;
+    TextInputLayout InputName, InputLocation, InputCost;
+    EditText InputDescription;
+    //EditText InputName,InputLocation,InputCost,InputDescription;
     CheckBox cbFamily,cbBenefactors,cbAccessible;
     Button btn_addTrip;
     Uri imageUri;
@@ -46,9 +49,9 @@ public class AddTripFragment extends Fragment {
        View view = inflater.inflate(R.layout.fragment_add_trip1, container, false);
         progressBar=view.findViewById(R.id.Fragment_AddTrip_prossbarr);
         InputImageTrip=view.findViewById(R.id.Fragment_AddTrip_imageTrip);
-        InputName=view.findViewById(R.id.Fragment_AddTrip_nametrip);
-        InputLocation=view.findViewById(R.id.Fragment_AddTrip_location);
-        InputCost=view.findViewById(R.id.Fragment_AddTrip_cost);
+        InputName=view.findViewById(R.id.Fragment_AddTrip_tripName);
+        InputLocation=view.findViewById(R.id.Fragment_AddTrip_tripLocation);
+        InputCost=view.findViewById(R.id.Fragment_AddTrip_tripCost);
         InputDescription=view.findViewById(R.id.Fragment_AddTrip_description);
         cbFamily=view.findViewById(R.id.Fragment_AddTrip_cb_Families);
         cbBenefactors=view.findViewById(R.id.Fragment_my_post_details_cb_benefactors);
@@ -74,9 +77,9 @@ public class AddTripFragment extends Fragment {
 
     private void AddPost() {
         String name,location,cost,description;
-        name=InputName.getText().toString();
-        location=InputLocation.getText().toString();
-        cost=InputCost.getText().toString();
+        name=InputName.getEditText().getText().toString();
+        location=InputLocation.getEditText().getText().toString();
+        cost=InputCost.getEditText().getText().toString();
         description=InputDescription.getText().toString();
 
         if(name.isEmpty()){
@@ -202,9 +205,13 @@ public class AddTripFragment extends Fragment {
             }
         }
     }
-    private void showError(EditText field, String text) {
+    private void showError(TextInputLayout field, String text) {
         field.setError(text);
         field.requestFocus();
     }
+//    private void showError(EditText field, String text) {
+//        field.setError(text);
+//        field.requestFocus();
+//    }
 
 }

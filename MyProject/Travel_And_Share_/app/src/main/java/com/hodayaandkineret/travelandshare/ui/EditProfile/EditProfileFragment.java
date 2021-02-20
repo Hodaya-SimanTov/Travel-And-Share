@@ -36,6 +36,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.hodayaandkineret.travelandshare.LoginActivity;
 import com.hodayaandkineret.travelandshare.MainActivity;
 import com.hodayaandkineret.travelandshare.Model.ModelFirebase;
@@ -43,6 +47,8 @@ import com.hodayaandkineret.travelandshare.R;
 import com.hodayaandkineret.travelandshare.RegisterActivity;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,9 +65,6 @@ public class EditProfileFragment extends Fragment {
     CircleImageView editProfileImage;
     TextInputLayout editProfileName, editProfileLastName;
     EditText t1,t2;
-//    EditText editProfileName;
-//    EditText editProfileLastName;
-
     String imageV, nameV, lastNameV;
     Button updateProfileBtn;
     Uri imageUri1;
@@ -87,6 +90,12 @@ public class EditProfileFragment extends Fragment {
         //editProfileBirthDate = view.findViewById(R.id.fragment_edit_profile_birthDate);
         updateProfileBtn = view.findViewById(R.id.fragment_edit_profile_saveBtn);
         myLoadingDialog=new ProgressDialog(getContext());
+        editProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getImageFromPhone();
+            }
+        });
         updateProfileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +104,33 @@ public class EditProfileFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    private void getImageFromPhone(){
+        editImage();
+    }
+    //dialog for take an image for phone
+    private void editImage() {
+        final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Choose your profile picture");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (options[item].equals("Take Photo")) {
+                    Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(takePicture, 0);
+                } else if (options[item].equals("Choose from Gallery")) {
+//                   Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    Intent pickPhoto=new Intent(Intent.ACTION_GET_CONTENT)   ;
+                    pickPhoto.setType("image/*");
+                    startActivityForResult(pickPhoto, 1);
+                } else if (options[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
     }
 
     private void UpdateUserProfile() {
@@ -177,33 +213,6 @@ public class EditProfileFragment extends Fragment {
     }
 
 
-    private void getImageFromPhone() {
-        editImage();
-    }
-
-    //dialog for take an image for phone
-    private void editImage() {
-        final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Choose your profile picture");
-        builder.setItems(options, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int item) {
-                if (options[item].equals("Take Photo")) {
-                    Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(takePicture, 0);
-                } else if (options[item].equals("Choose from Gallery")) {
-//                   Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    Intent pickPhoto = new Intent(Intent.ACTION_GET_CONTENT);
-                    pickPhoto.setType("image/*");
-                    startActivityForResult(pickPhoto, 1);
-                } else if (options[item].equals("Cancel")) {
-                    dialog.dismiss();
-                }
-            }
-        });
-        builder.show();
-    }
     private Map<String, Object> toMap(String name,String Family,String image) {
         HashMap<String, Object> result = new HashMap<>();
         result.put("username", name);
@@ -211,6 +220,32 @@ public class EditProfileFragment extends Fragment {
         result.put("LastName", Family);
         result.put("status", "offline");
         return result;
+    }
+
+    public static void uploadImage(Bitmap imageBmp, String fileName, final ModelFirebase.UploadImageListener listener){
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        final StorageReference imagesRef = storage.getReference().child("ProfilImages").child(fileName);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+        UploadTask uploadTask = imagesRef.putBytes(data);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(Exception exception) {
+                listener.onComplete(null);
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Uri downloadUrl = uri;
+                        listener.onComplete(downloadUrl.toString());
+                    }
+                });
+            }
+        });
     }
 
     @Override
