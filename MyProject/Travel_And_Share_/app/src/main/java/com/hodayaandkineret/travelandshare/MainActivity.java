@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
     TextView userNameHeader;
     //ProgressDialog myLoadingDialog;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,8 +109,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
-
 
 
     @Override

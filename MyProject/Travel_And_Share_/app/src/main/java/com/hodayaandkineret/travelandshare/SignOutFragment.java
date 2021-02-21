@@ -1,12 +1,16 @@
 package com.hodayaandkineret.travelandshare;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,7 +29,7 @@ public class SignOutFragment extends Fragment {
     private String mParam2;
 
     public SignOutFragment() {
-        // Required empty public constructor
+
     }
 
     /**
@@ -53,12 +57,26 @@ public class SignOutFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_out, container, false);
+        View view=inflater.inflate(R.layout.fragment_sign_out, container, false);
+        Runnable runnable=new Runnable() {
+            @Override
+            public void run() {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        };
+        Handler handler=new Handler();
+        handler.postDelayed(runnable,3000);
+
+        return view;
     }
 }
