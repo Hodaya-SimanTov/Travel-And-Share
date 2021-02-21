@@ -110,8 +110,6 @@ public class AddTripFragment extends Fragment {
             post.setDelete(false);
             savePostInFirebase(post);
         }
-
-
     }
 
     private void savePostInFirebase(Post post) {
@@ -150,11 +148,6 @@ public class AddTripFragment extends Fragment {
                 }
             }
         });
-
-
-
-
-
     }
 
     private void getImageFromPhone(){

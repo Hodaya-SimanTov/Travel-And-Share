@@ -1,6 +1,5 @@
 package com.hodayaandkineret.travelandshare.Model;
 
-
 import android.graphics.Bitmap;
 import android.net.Uri;
 import androidx.annotation.NonNull;
@@ -23,16 +22,13 @@ import java.io.ByteArrayOutputStream;
 import java.util.LinkedList;
 import java.util.List;
 
-
 public class ModelFirebase {
     StorageReference storageRef;
-
     public void addPost(Post post,  Model.AddPostListener listener) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference ref = db.collection("PostInformation").document();
         String pid=ref.getId();
         post.setId(pid);
-
         db.collection("PostInformation").document(pid).set(post.toMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override public void onSuccess(Void aVoid) {
 
@@ -43,8 +39,7 @@ public class ModelFirebase {
                     public void onFailure(@NonNull Exception e) {
                         listener.onComplete(false);
                     }
-                });
-
+        });
     }
 
     public static void getAllPosts(Long lastUpdated,Model.GetAllPostsListener listener) {
@@ -58,26 +53,7 @@ public class ModelFirebase {
                     for (QueryDocumentSnapshot doc: task.getResult()) {
                         Post post =new Post();
                         post.fromMap(doc.getData());
-
-                            postList.add(post);
-
-                    }
-                    listener.onComplete(postList);
-                }else{
-                    listener.onComplete(null);
-                }
-            }
-        });
-        db.collection("PostInformation").whereGreaterThanOrEqualTo("isDelete",true).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()){
-                    List<Post> postList = new LinkedList<Post>();
-                    for (QueryDocumentSnapshot doc: task.getResult()) {
-                        Post post =new Post();
-                        post.fromMap(doc.getData());
                         postList.add(post);
-
                     }
                     listener.onComplete(postList);
                 }else{
@@ -144,7 +120,6 @@ public class ModelFirebase {
     public interface UploadImageListener{
         public void onComplete(String url);
     }
-
     public static void uploadImage(Bitmap imageBmp, String fileName, final UploadImageListener listener){
         FirebaseStorage storage = FirebaseStorage.getInstance();
         final StorageReference imagesRef = storage.getReference().child("PostImages").child(fileName);
