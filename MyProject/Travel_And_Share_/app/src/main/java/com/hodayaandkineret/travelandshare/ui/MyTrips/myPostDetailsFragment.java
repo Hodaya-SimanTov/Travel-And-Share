@@ -35,10 +35,10 @@ public class myPostDetailsFragment extends Fragment {
       post = PostDetailsFragmentArgs.fromBundle(getArguments()).getMyPost();
       imageTrip=view.findViewById(R.id.Fragment_my_post_details__image);
       editImage=view.findViewById(R.id.Fragment_my_post_details_editImage);
-      InputLocation=view.findViewById(R.id.Fragment_my_post_details__location);
-      InputName=view.findViewById(R.id.Fragment_my_post_details__nametrip);
+      InputLocation=view.findViewById(R.id.my_post_details_location);
+      InputName=view.findViewById(R.id.my_post_details_tripName);
       InputDescription=view.findViewById(R.id.Fragment_my_post_details_description);
-      InputCost=view.findViewById(R.id.Fragment_my_post_details_cost);
+      InputCost=view.findViewById(R.id.my_post_details_cost);
       cbFamily=view.findViewById(R.id.Fragment_my_post_details_cb_Families);
       cbBenefactors=view.findViewById(R.id.Fragment_my_post_details_cb_benefactors);
       cbAccessible=view.findViewById(R.id.Fragment_my_post_details_accessible);
