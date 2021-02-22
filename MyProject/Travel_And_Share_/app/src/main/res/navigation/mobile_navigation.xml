@@ -18,8 +18,8 @@
     <fragment
         android:id="@+id/nav_addTrip"
         android:name="com.hodayaandkineret.travelandshare.ui.AddTrip.AddTripFragment"
-        android:label="AddTrip"
-        tools:layout="@layout/fragment_add_trip1" >
+        android:label="Add A Trip"
+        tools:layout="@layout/fragment_add_trip1">
         <action
             android:id="@+id/action_nav_addTrip_to_nav_home"
             app:destination="@id/nav_home" />
@@ -42,8 +42,8 @@
     <fragment
         android:id="@+id/nav_editProfile"
         android:name="com.hodayaandkineret.travelandshare.ui.EditProfile.EditProfileFragment"
-        android:label="Edit Your Profile"
-        tools:layout="@layout/fragment_edit_profile" >
+        android:label="Edit Profile"
+        tools:layout="@layout/fragment_edit_profile">
         <action
             android:id="@+id/action_nav_editProfile_to_nav_home"
             app:destination="@id/nav_home" />
@@ -56,8 +56,8 @@
     <fragment
         android:id="@+id/postDetailsFragment"
         android:name="com.hodayaandkineret.travelandshare.ui.home.PostDetailsFragment"
-        android:label="fragment_post_details"
-        tools:layout="@layout/fragment_post_details" >
+        android:label="Trip Details"
+        tools:layout="@layout/fragment_post_details">
         <argument
             android:name="myPost"
             app:argType="com.hodayaandkineret.travelandshare.Model.Post" />
@@ -65,8 +65,8 @@
     <fragment
         android:id="@+id/myPostDetailsFragment"
         android:name="com.hodayaandkineret.travelandshare.ui.MyTrips.myPostDetailsFragment"
-        android:label="fragment_my_post_details"
-        tools:layout="@layout/fragment_my_post_details" >
+        android:label="Edit My Post"
+        tools:layout="@layout/fragment_my_post_details">
         <argument
             android:name="myPost"
             app:argType="com.hodayaandkineret.travelandshare.Model.Post" />

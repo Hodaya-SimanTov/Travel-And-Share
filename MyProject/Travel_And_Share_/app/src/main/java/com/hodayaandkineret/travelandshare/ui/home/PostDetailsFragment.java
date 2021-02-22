@@ -31,6 +31,7 @@ public class PostDetailsFragment extends Fragment {
     Post post;
     ImageView like;
     TextView countLike;
+    EditText description;
     FirebaseUser muser;
     DatabaseReference likeRef;
     @Override
@@ -48,7 +49,8 @@ public class PostDetailsFragment extends Fragment {
         TextView cost=view.findViewById(R.id.fragment_post_details_cost);
         //TextView cost_tv = view.findViewById(R.id.fragment_post_details_costTV2);
 
-        TextView description=view.findViewById(R.id.Fragment_post_details_description);
+        description=view.findViewById(R.id.Fragment_post_details_description_et);
+
         TextView accessible= view.findViewById(R.id.Fragment_post_details_accessible);
         TextView benefactors=view.findViewById(R.id.Fragment_post_details_benefactors);
         TextView Family=view.findViewById(R.id.Fragment_post_details_family);
@@ -60,6 +62,7 @@ public class PostDetailsFragment extends Fragment {
         Picasso.get().load(post.getImageUrl()).into(image);
         location.setText(post.getLocation());
         description.setText(post.getOpenText());
+        description.setEnabled(false);
         cost.setText(post.getCost());
         if(post.isAccessible()){
             accessible.setTextColor(-16343841);

@@ -204,11 +204,6 @@ public class EditProfileFragment extends Fragment {
 
 
     }
-
-//    private void showError(EditText field, String text) {
-//        field.setError(text);
-//        field.requestFocus();
-//    }
     private void showError(TextInputLayout field, String text) {
         field.setError(text);
         field.requestFocus();
@@ -223,9 +218,6 @@ public class EditProfileFragment extends Fragment {
         result.put("status", "offline");
         return result;
     }
-
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

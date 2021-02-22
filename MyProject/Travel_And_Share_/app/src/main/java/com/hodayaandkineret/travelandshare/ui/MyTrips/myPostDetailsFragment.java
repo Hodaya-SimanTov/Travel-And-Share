@@ -13,7 +13,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.hodayaandkineret.travelandshare.Model.Model;
 import com.hodayaandkineret.travelandshare.Model.Post;
@@ -37,7 +36,7 @@ public class myPostDetailsFragment extends Fragment {
       editImage=view.findViewById(R.id.Fragment_my_post_details_editImage);
       InputLocation=view.findViewById(R.id.my_post_details_location);
       InputName=view.findViewById(R.id.my_post_details_tripName);
-      InputDescription=view.findViewById(R.id.Fragment_my_post_details_description);
+      InputDescription=view.findViewById(R.id.Fragment_post_details_description_et);
       InputCost=view.findViewById(R.id.my_post_details_cost);
       cbFamily=view.findViewById(R.id.Fragment_my_post_details_cb_Families);
       cbBenefactors=view.findViewById(R.id.Fragment_my_post_details_cb_benefactors);

@@ -106,18 +106,21 @@
         app:layout_constraintStart_toStartOf="@+id/Fragment_post_details_family"
         app:layout_constraintTop_toBottomOf="@+id/Fragment_post_details_family" />
 
-    <TextView
-        android:id="@+id/Fragment_post_details_description"
-        android:layout_width="349dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="70dp"
+    <EditText
+        android:id="@+id/Fragment_post_details_description_et"
+        android:layout_width="0dp"
+        android:layout_height="104dp"
+
+
+        android:layout_marginTop="8dp"
         android:background="@drawable/fild_in_add_trip"
-        android:inputType="textImeMultiLine"
-        android:textColor="#323030"
-        android:textSize="18sp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:textColor="@color/black"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/Fragment_post_details_accessible"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/Fragment_post_details_family"
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
@@ -130,38 +133,39 @@
         android:text="Accessible"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/Fragment_post_details_benefactors"
         app:layout_constraintEnd_toEndOf="@+id/fragment_post_details_cost"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/Fragment_post_details_benefactors"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintTop_toTopOf="@+id/Fragment_post_details_benefactors" />
 
     <TextView
         android:id="@+id/fragment_post_details_location"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="normal|bold"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_post_details_locationTV"
         app:layout_constraintEnd_toEndOf="@+id/Fragment_post_details_image"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/fragment_post_details_locationTV"
-        app:layout_constraintTop_toBottomOf="@+id/Fragment_post_details_image" />
+        app:layout_constraintTop_toTopOf="@+id/fragment_post_details_locationTV" />
 
     <TextView
         android:id="@+id/fragment_post_details_cost"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text=" "
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="normal|bold"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_post_details_costTV2"
         app:layout_constraintEnd_toEndOf="@+id/fragment_post_details_location"
         app:layout_constraintStart_toEndOf="@+id/fragment_post_details_costTV2"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_post_details_location" />
+        app:layout_constraintTop_toTopOf="@+id/fragment_post_details_costTV2" />
 
     <TextView
         android:id="@+id/fragment_post_details_locationTV"
