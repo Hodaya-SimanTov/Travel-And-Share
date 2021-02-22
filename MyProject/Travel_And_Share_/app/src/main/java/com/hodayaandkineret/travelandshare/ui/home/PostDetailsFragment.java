@@ -95,7 +95,7 @@ public class PostDetailsFragment extends Fragment {
                 }
                 else{
                     likeRef.child(post.getId()).child(muser.getUid()).setValue("like");
-                    like.setColorFilter(Color.CYAN);
+                    like.setColorFilter(-16343841);
                 }
             }
 
@@ -129,7 +129,7 @@ public class PostDetailsFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.child(uid).exists()){
-                    like.setColorFilter(Color.CYAN);
+                    like.setColorFilter(-16343841);
                 }
                 else{
                     like.setColorFilter(Color.GRAY);
