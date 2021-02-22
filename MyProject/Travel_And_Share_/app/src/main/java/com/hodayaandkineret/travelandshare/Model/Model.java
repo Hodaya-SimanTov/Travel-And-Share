@@ -106,16 +106,16 @@ public class Model {
     }
 
     public interface updatePostListener{
-        void onComplete();
+        void onComplete(boolean success);
     }
     public void uploadImage(Bitmap imageBmp, String fileName, final ModelFirebase.UploadImageListener listener) {
         ModelFirebase.uploadImage(imageBmp,fileName,listener);
     }
-//    public void UpdatePost(final Post post, final updatePostListener listener) {
-//        PostModelFireBase.updatePost(post,listener);
-//
-//    }
-//
+    public void UpdatePost(final Post post, final updatePostListener listener) {
+        PostModelFireBase.updatePost(post,listener);
+
+    }
+
 
 
     public interface refreshAllPostListener{
