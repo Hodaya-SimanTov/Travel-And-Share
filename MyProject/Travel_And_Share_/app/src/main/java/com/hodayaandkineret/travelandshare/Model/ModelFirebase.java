@@ -118,6 +118,22 @@ public class ModelFirebase {
            }
        });
     }
+
+    public void updatePost(Post post, Model.updatePostListener listener) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("PostInformation").document(post.getId()).set(post.toMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override public void onSuccess(Void aVoid) {
+
+                listener.onComplete(true);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                listener.onComplete(false);
+            }
+        });
+    }
+
     public interface UploadImageListener{
         public void onComplete(String url);
     }

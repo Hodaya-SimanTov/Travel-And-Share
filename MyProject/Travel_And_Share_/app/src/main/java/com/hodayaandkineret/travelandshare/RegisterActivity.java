@@ -137,7 +137,6 @@ public class RegisterActivity extends AppCompatActivity {
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
                         ProfilImage.setImageBitmap(selectedImage);
                         flagCheckImage=true;
-
                     }
                     break;
                 case 1: //return from gallery
