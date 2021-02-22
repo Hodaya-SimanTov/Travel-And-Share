@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,8 +44,10 @@ public class PostDetailsFragment extends Fragment {
         //TextInputLayout location = view.findViewById(R.id.Fragment_post_details_name);
 
         TextView name=view.findViewById(R.id.Fragment_post_details_name);
-        TextView location=view.findViewById(R.id.post_details_location);
-        TextView cost=view.findViewById(R.id.post_details_cost);
+        TextView location=view.findViewById(R.id.fragment_post_details_location);
+        TextView cost=view.findViewById(R.id.fragment_post_details_cost);
+        //TextView cost_tv = view.findViewById(R.id.fragment_post_details_costTV2);
+
         TextView description=view.findViewById(R.id.Fragment_post_details_description);
         TextView accessible= view.findViewById(R.id.Fragment_post_details_accessible);
         TextView benefactors=view.findViewById(R.id.Fragment_post_details_benefactors);
@@ -59,19 +62,19 @@ public class PostDetailsFragment extends Fragment {
         description.setText(post.getOpenText());
         cost.setText(post.getCost());
         if(post.isAccessible()){
-            accessible.setTextColor(Color.CYAN);
+            accessible.setTextColor(-16343841);
         }
         else{
             accessible.setEnabled(false);
         }
         if(post.isForBenefactors()){
-            benefactors.setTextColor(Color.CYAN);
+            benefactors.setTextColor(-16343841);
         }
         else{
             benefactors.setEnabled(false);
         }
         if(post.isForFamilies()){
-            Family.setTextColor(Color.CYAN);
+            Family.setTextColor(-16343841);
         }
         else{
             Family.setEnabled(false);
@@ -95,7 +98,7 @@ public class PostDetailsFragment extends Fragment {
                 }
                 else{
                     likeRef.child(post.getId()).child(muser.getUid()).setValue("like");
-                    like.setColorFilter(Color.CYAN);
+                    like.setColorFilter(-16343841);
                 }
             }
 
@@ -129,7 +132,7 @@ public class PostDetailsFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.child(uid).exists()){
-                    like.setColorFilter(Color.CYAN);
+                    like.setColorFilter(-16343841);
                 }
                 else{
                     like.setColorFilter(Color.GRAY);

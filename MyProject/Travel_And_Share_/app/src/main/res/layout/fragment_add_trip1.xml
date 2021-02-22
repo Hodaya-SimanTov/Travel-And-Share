@@ -130,7 +130,7 @@
 
             <EditText
                 android:id="@+id/Fragment_AddTrip_description"
-                android:layout_width="363dp"
+                android:layout_width="0dp"
                 android:layout_height="86dp"
 
 
@@ -150,19 +150,16 @@
                 android:id="@+id/Fradment_my_post_details__save_btn"
                 android:layout_width="0dp"
                 android:layout_height="37dp"
-                android:layout_marginTop="35dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/batton_add_trip"
                 android:text="ADD TRIP"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:backgroundTint="@color/purple_200"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/Fragment_AddTrip_description"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/Fragment_AddTrip_description"
-                app:layout_constraintTop_toBottomOf="@+id/Fragment_AddTrip_description"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toBottomOf="@+id/Fragment_AddTrip_description" />
 
             <CheckBox
                 android:id="@+id/Fragment_AddTrip_cb_Families"
@@ -188,8 +185,8 @@
             <CheckBox
                 android:id="@+id/Fragment_AddTrip_accessible"
                 style="@android:style/Widget.Holo.CompoundButton.CheckBox"
-                android:layout_width="146dp"
-                android:layout_height="31dp"
+                android:layout_width="186dp"
+                android:layout_height="34dp"
                 android:drawableStart="@drawable/ic_baseline_accessible_24"
                 android:focusable="auto"
                 android:text="Accessible"
