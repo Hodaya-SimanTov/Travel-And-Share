@@ -46,7 +46,6 @@ public class ModelSql {
                 AppLocalDB.db.postDao().deletePost(post);
                 return null;
             }
-
             @Override
             protected void onPostExecute(Object o) {
                 super.onPostExecute(o);
@@ -55,5 +54,7 @@ public class ModelSql {
                 }
             }
         }
+        MyAsynchTask task = new MyAsynchTask();
+        task.execute();
     }
 }
