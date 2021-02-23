@@ -115,15 +115,15 @@ public class AddTripFragment extends Fragment {
     private void savePostInFirebase(Post post) {
         progressBar.setVisibility(View.VISIBLE);
 
-        Bitmap bitmap = ((BitmapDrawable)InputImageTrip.getDrawable()).getBitmap();
-        Model.instance.uploadImage(bitmap,myUser.getUid()+post.getName(), new ModelFirebase.UploadImageListener() {
+        Bitmap bitmap = ((BitmapDrawable) InputImageTrip.getDrawable()).getBitmap();
+        Model.instance.uploadImage(bitmap, myUser.getUid() + post.getName(), new ModelFirebase.UploadImageListener() {
             @Override
             public void onComplete(String url) {
-                if (url == null){
+                if (url == null) {
                     progressBar.setVisibility(View.INVISIBLE);
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle("Save Image Filed");
-                    builder.setMessage("the operation was cancelled, please try again...");
+                    builder.setMessage("The operation was cancelled, please try again...");
                     builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -131,16 +131,15 @@ public class AddTripFragment extends Fragment {
                         }
                     });
                     builder.show();
-                }else{
+                } else {
                     post.setImageUrl(url);
                     Model.instance.addPost(post, new Model.AddPostListener() {
                         @Override
                         public void onComplete(boolean success) {
-                            if(success) {
+                            if (success) {
                                 Toast.makeText(getView().getContext(), "Post is  Created", Toast.LENGTH_SHORT).show();
                                 Navigation.findNavController(getView()).navigate(R.id.action_nav_addTrip_to_nav_home);
-                            }
-                            else{
+                            } else {
                                 Toast.makeText(getView().getContext(), "Error! Post is not Created", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -149,8 +148,7 @@ public class AddTripFragment extends Fragment {
             }
         });
     }
-
-    private void getImageFromPhone(){
+    private void getImageFromPhone( ){
         editImage();
     }
     //dialog for take an image for phone
@@ -184,7 +182,6 @@ public class AddTripFragment extends Fragment {
                     if (resultCode == RESULT_OK && data != null) {
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
                         InputImageTrip.setImageBitmap(selectedImage);
-
                         flagAddImage=true;
                     }
                     break;
@@ -202,9 +199,4 @@ public class AddTripFragment extends Fragment {
         field.setError(text);
         field.requestFocus();
     }
-//    private void showError(EditText field, String text) {
-//        field.setError(text);
-//        field.requestFocus();
-//    }
-
 }

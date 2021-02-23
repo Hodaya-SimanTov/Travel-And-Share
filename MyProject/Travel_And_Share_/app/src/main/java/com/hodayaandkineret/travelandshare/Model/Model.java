@@ -1,18 +1,37 @@
 package com.hodayaandkineret.travelandshare.Model;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.net.Uri;
+import android.widget.ImageView;
 
 import androidx.lifecycle.LiveData;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hodayaandkineret.travelandshare.MyApplication;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static androidx.core.app.ActivityCompat.startActivityForResult;
+
 public class Model {
+//    public static final int RESULT_CANCELED =0 ;
+//    public static final int RESULT_OK =-1 ;
+//    Uri imageUri;
+//    boolean flagAddImage=false;
+//    ImageView InputImageTrip;
+
+
+
+
     public final static  Model instance = new Model();
     private ModelFirebase PostModelFireBase=new ModelFirebase();
     private  ModelSql modelSql=new ModelSql();
@@ -124,7 +143,7 @@ public class Model {
     public void refreshAllPost(final refreshAllPostListener listener) {
         //1. get local last update date
         final SharedPreferences sp = MyApplication.getAppContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
-        long lastUpdated = sp.getLong("lastUpdated",0);
+        long lastUpdated = sp.getLong("lastUpdated", 0);
         //2. get all updated record from firebase from the last update date
         PostModelFireBase.getAllPosts(lastUpdated, new GetAllPostsListener() {
             @Override
@@ -132,15 +151,14 @@ public class Model {
                 //3. insert the new updates to the local db
                 long lastU = 0;
                 for (Post p : result) {
-                    if(p.isDelete()){
-                        ModelSql.deletePost(p,new DeletePostListener(){
+                    if (p.isDelete()) {
+                        ModelSql.deletePost(p, new DeletePostListener() {
                             @Override
                             public void onComplete() {
 
                             }
                         });
-                    }
-                    else {
+                    } else {
                         ModelSql.addPost(p, null);
                         if (p.getLastUpdated() > lastU) {
                             lastU = p.getLastUpdated();
@@ -154,8 +172,60 @@ public class Model {
                     listener.onComplete();
                 }
             }
-        } );
-}
+        });
+    }
+//}
+//    public interface getCircleImage{
+//        void onComplete();
+//    }
+//    public void editImage(CircleImageView Cimage, final getCircleImage listener) {
+//        final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
+//        AlertDialog.Builder builder = new AlertDialog.Builder();
+//        builder.setTitle("Choose your profile picture");
+//        builder.setItems(options, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int item) {
+//                if (options[item].equals("Take Photo")) {
+//                    Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+//                    startActivityForResult(takePicture, 0);
+//                } else if (options[item].equals("Choose from Gallery")) {
+////                   Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                    Intent pickPhoto=new Intent(Intent.ACTION_GET_CONTENT)   ;
+//                    pickPhoto.setType("image/*");
+//                    startActivityForResult(pickPhoto, 1);
+//                } else if (options[item].equals("Cancel")) {
+//                    dialog.dismiss();
+//                }
+//            }
+//        });
+//        builder.show();
+//    }
+//    public void onActivityResult(int requestCode, int resultCode,Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode != RESULT_CANCELED) {
+//            switch (requestCode) {
+//                case 0: //return from camera
+//                    if (resultCode == RESULT_OK && data != null) {
+//                        Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
+//                        InputImageTrip.setImageBitmap(selectedImage);
+//
+//                        flagAddImage=true;
+//                    }
+//                    break;
+//                case 1: //return from gallery
+//                    if( resultCode==RESULT_OK && data!=null){
+//                        imageUri=data.getData();
+//                        InputImageTrip.setImageURI(imageUri);
+//                        flagAddImage=true;
+//                    }
+//                    break;
+//            }
+//        }
+//    }
+    private void showError(TextInputLayout field, String text) {
+        field.setError(text);
+        field.requestFocus();
+    }
 
 }
 

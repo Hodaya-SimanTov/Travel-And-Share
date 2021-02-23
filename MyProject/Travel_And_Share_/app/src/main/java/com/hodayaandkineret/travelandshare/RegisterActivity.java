@@ -238,42 +238,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-//        storageRef= FirebaseStorage.getInstance().getReference().child("ProfilImages");
-//        storageRef.child(myUser.getUid()).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-//                if(task.isSuccessful()){
-//                    storageRef.child(myUser.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                        @Override
-//                        public void onSuccess(Uri uri) {
-//                            HashMap hashMap=new HashMap();
-//                            hashMap.put("username",username);
-//                            hashMap.put("profilImage",uri.toString());
-//                            hashMap.put("LastName","");
-//                            hashMap.put("BirthDate","");
-//                            hashMap.put("status","offline");
-//
-//                            mRef.child(myUser.getUid()).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
-//                                @Override
-//                                public void onSuccess(Object o) {
-//                                    myLoadingDialog.dismiss();
-//                                    Toast.makeText(RegisterActivity.this,"Account  Created!",Toast.LENGTH_LONG).show();
-//                                    Intent intent=new Intent(RegisterActivity.this,MainActivity.class);
-//                                    startActivity(intent);
-//                                }
-//                            }).addOnFailureListener(new OnFailureListener() {
-//                                @Override
-//                                public void onFailure(@NonNull Exception e) {
-//                                    myLoadingDialog.dismiss();
-//                                    Toast.makeText(RegisterActivity.this,e.toString(),Toast.LENGTH_SHORT).show();
-//                                }
-//                            });
-//                        }
-//                    });
-//                }
-//            }
-//        });
-//        }
+
     public static void uploadImage(Bitmap imageBmp, String fileName, final ModelFirebase.UploadImageListener listener){
         FirebaseStorage storage = FirebaseStorage.getInstance();
         final StorageReference imagesRef = storage.getReference().child("ProfilImages").child(fileName);
@@ -300,46 +265,4 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    public void SaveData(String username){
-        storageRef= FirebaseStorage.getInstance().getReference().child("ProfilImages");
-        storageRef.child(myUser.getUid()).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                if(task.isSuccessful()){
-                    storageRef.child(myUser.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            FirebaseFirestore db = FirebaseFirestore.getInstance();
-                            HashMap hashMap=new HashMap();
-                            hashMap.put("username",username);
-                            hashMap.put("profilImage",imageUri.toString());
-                            hashMap.put("lastName","");
-                            Date d=new Date(1,1,2000);
-                            hashMap.put("birthDate",d.toString());
-                            hashMap.put("status","offline");
-
-                            db.collection("User").document(myUser.getUid())
-                                    .set(hashMap)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            myLoadingDialog.dismiss();
-                                    Toast.makeText(RegisterActivity.this,"Account  Created!",Toast.LENGTH_LONG).show();
-                                    Intent intent=new Intent(RegisterActivity.this,MainActivity.class);
-                                    startActivity(intent);
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            myLoadingDialog.dismiss();
-                                            Toast.makeText(RegisterActivity.this,e.toString(),Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                        }
-                    })  ;
-                }
-            }
-        }) ;
-    }
 }

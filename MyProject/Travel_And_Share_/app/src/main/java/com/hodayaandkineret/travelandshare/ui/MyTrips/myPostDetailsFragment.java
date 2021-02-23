@@ -125,11 +125,11 @@ public class myPostDetailsFragment extends Fragment {
                         @Override
                         public void onComplete(boolean success) {
                             if(success) {
-                                Toast.makeText(getView().getContext(), "Post is  Created", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getView().getContext(), "Post is  Updated", Toast.LENGTH_SHORT).show();
                                 Navigation.findNavController(getView()).navigate(R.id.action_myPostDetailsFragment_to_nav_myTrips);
                             }
                             else{
-                                Toast.makeText(getView().getContext(), "Error! Post is not Created", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getView().getContext(), "Error! Post was not Updated", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
