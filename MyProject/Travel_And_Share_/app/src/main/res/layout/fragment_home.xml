@@ -17,64 +17,11 @@
             android:id="@+id/fragment_home_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="60dp"
             android:background="@drawable/backgr"
             android:cacheColorHint="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_home_search_bar" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/fragment_home_search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-
-            android:paddingLeft="45dp"
-            app:boxBackgroundColor="#FFEDF5F8"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/nav_host_fragment">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/fragment_home_text_input_search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#FFEDF5F8"
-                android:hint="Search Trip or Route" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <ImageView
-            android:id="@+id/fragment_home_location_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="#FFEDF5F8"
-            app:layout_constraintBottom_toBottomOf="@+id/fragment_home_search_bar"
-            app:layout_constraintStart_toStartOf="@+id/fragment_home_search_bar"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/location_icon" />
-
-        <ImageButton
-            android:id="@+id/fragment_hone_search_button"
-            style="@style/Widget.AppCompat.ImageButton"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="#FFEDF5F8"
-            android:scaleType="fitCenter"
-            android:src="@drawable/search_button"
-            app:layout_constraintBottom_toBottomOf="@+id/fragment_home_search_bar"
-            app:layout_constraintEnd_toEndOf="@+id/fragment_home_search_bar"
-            app:layout_constraintTop_toTopOf="@+id/fragment_home_search_bar" />
-
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

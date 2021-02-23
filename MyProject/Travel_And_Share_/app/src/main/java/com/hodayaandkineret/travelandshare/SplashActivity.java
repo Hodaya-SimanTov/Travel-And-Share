@@ -23,7 +23,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SplashActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
-    DatabaseReference mRef;
     FirebaseUser mUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

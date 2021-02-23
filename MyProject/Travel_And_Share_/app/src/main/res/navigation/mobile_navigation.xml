@@ -35,11 +35,6 @@
             app:destination="@id/myPostDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/nav_myFavorites"
-        android:name="com.hodayaandkineret.travelandshare.ui.MyFavoritesFragment.MyFvorites"
-        android:label="My Favorites Trips And Route"
-        tools:layout="@layout/fragment_myfavoritestrips" />
-    <fragment
         android:id="@+id/nav_editProfile"
         android:name="com.hodayaandkineret.travelandshare.ui.EditProfile.EditProfileFragment"
         android:label="Edit Profile"
@@ -52,7 +47,11 @@
         android:id="@+id/nav_signout"
         android:name="com.hodayaandkineret.travelandshare.SignOutFragment"
         android:label="Sign Out"
-        tools:layout="@layout/fragment_sign_out" />
+        tools:layout="@layout/fragment_sign_out" >
+        <action
+            android:id="@+id/action_nav_signout_to_loginActivity"
+            app:destination="@id/loginActivity" />
+    </fragment>
     <fragment
         android:id="@+id/postDetailsFragment"
         android:name="com.hodayaandkineret.travelandshare.ui.home.PostDetailsFragment"
@@ -76,4 +75,9 @@
             app:popUpTo="@id/nav_myTrips"
             app:popUpToInclusive="false" />
     </fragment>
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.hodayaandkineret.travelandshare.LoginActivity"
+        android:label="activity_login_scrol"
+        tools:layout="@layout/activity_login_scrol" />
 </navigation>

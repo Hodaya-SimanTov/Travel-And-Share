@@ -48,7 +48,6 @@ FirebaseAuth mAuth;
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(ForgotPasswordActivity.this,"Please Check Your Email", Toast.LENGTH_SHORT).show();
-
                         Intent intent=new Intent(ForgotPasswordActivity.this,LoginActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
@@ -56,7 +55,6 @@ FirebaseAuth mAuth;
                     }
                     else{
                         Toast.makeText(ForgotPasswordActivity.this,"Email was not Send! ", Toast.LENGTH_SHORT).show();
-                        //Toast.makeText(ForgotPasswordActivity.this,"Please Enter Your Email", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(ForgotPasswordActivity.this,LoginActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);

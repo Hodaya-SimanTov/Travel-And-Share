@@ -23,15 +23,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import static androidx.core.app.ActivityCompat.startActivityForResult;
 
 public class Model {
-//    public static final int RESULT_CANCELED =0 ;
-//    public static final int RESULT_OK =-1 ;
-//    Uri imageUri;
-//    boolean flagAddImage=false;
-//    ImageView InputImageTrip;
-
-
-
-
     public final static  Model instance = new Model();
     private ModelFirebase PostModelFireBase=new ModelFirebase();
     private  ModelSql modelSql=new ModelSql();
@@ -123,7 +114,6 @@ public class Model {
         PostModelFireBase.addPost(post,listener);
 
     }
-
     public interface updatePostListener{
         void onComplete(boolean success);
     }
@@ -134,8 +124,6 @@ public class Model {
         PostModelFireBase.updatePost(post,listener);
 
     }
-
-
 
     public interface refreshAllPostListener{
     void onComplete();
@@ -174,54 +162,7 @@ public class Model {
             }
         });
     }
-//}
-//    public interface getCircleImage{
-//        void onComplete();
-//    }
-//    public void editImage(CircleImageView Cimage, final getCircleImage listener) {
-//        final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
-//        AlertDialog.Builder builder = new AlertDialog.Builder();
-//        builder.setTitle("Choose your profile picture");
-//        builder.setItems(options, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int item) {
-//                if (options[item].equals("Take Photo")) {
-//                    Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-//                    startActivityForResult(takePicture, 0);
-//                } else if (options[item].equals("Choose from Gallery")) {
-////                   Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                    Intent pickPhoto=new Intent(Intent.ACTION_GET_CONTENT)   ;
-//                    pickPhoto.setType("image/*");
-//                    startActivityForResult(pickPhoto, 1);
-//                } else if (options[item].equals("Cancel")) {
-//                    dialog.dismiss();
-//                }
-//            }
-//        });
-//        builder.show();
-//    }
-//    public void onActivityResult(int requestCode, int resultCode,Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (resultCode != RESULT_CANCELED) {
-//            switch (requestCode) {
-//                case 0: //return from camera
-//                    if (resultCode == RESULT_OK && data != null) {
-//                        Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
-//                        InputImageTrip.setImageBitmap(selectedImage);
-//
-//                        flagAddImage=true;
-//                    }
-//                    break;
-//                case 1: //return from gallery
-//                    if( resultCode==RESULT_OK && data!=null){
-//                        imageUri=data.getData();
-//                        InputImageTrip.setImageURI(imageUri);
-//                        flagAddImage=true;
-//                    }
-//                    break;
-//            }
-//        }
-//    }
+
     private void showError(TextInputLayout field, String text) {
         field.setError(text);
         field.requestFocus();

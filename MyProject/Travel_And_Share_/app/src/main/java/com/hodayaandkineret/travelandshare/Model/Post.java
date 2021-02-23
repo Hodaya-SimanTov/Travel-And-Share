@@ -31,9 +31,6 @@ public class Post implements Parcelable {
     private String ownerUid;
     private Long lastUpdated;
 
-
-
-
     public Post() {
 
     }

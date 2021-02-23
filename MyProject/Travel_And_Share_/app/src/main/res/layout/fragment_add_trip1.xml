@@ -73,6 +73,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
                 android:textColorHint="@color/purple_700"
+                android:inputType="number"
                 app:boxBackgroundColor="@null"
                 app:boxStrokeColor="#069CDF"
                 app:layout_constraintEnd_toEndOf="@+id/Fragment_AddTrip_tripLocation"

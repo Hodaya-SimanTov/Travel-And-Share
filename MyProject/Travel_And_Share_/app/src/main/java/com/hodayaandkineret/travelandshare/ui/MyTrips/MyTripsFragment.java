@@ -73,17 +73,6 @@ public class MyTripsFragment extends Fragment {
             sRef.setRefreshing(false);
         });
     }
-    // @Override
-//    public void onResume() {
-//        super.onResume();
-//        Model.instance.getAllPosts(new Model.GetAllPostsListener() {
-//            @Override
-//            public void onComplete(List<Post> _data) {
-//                viewModel.setList(_data);
-//                adapter.notifyDataSetChanged();
-//            }
-//        });
-//    }
     class MyAdapter extends BaseAdapter {
         @Override
         public int getCount() {
@@ -124,8 +113,6 @@ public class MyTripsFragment extends Fragment {
                     Picasso.get().load(post.getImageUrl()).into(imagev);
                 }
             } else {
-
-
             }
             return view;
         }
